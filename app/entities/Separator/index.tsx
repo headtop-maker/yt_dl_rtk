@@ -1,3 +1,4 @@
+import { dp } from '@/app/shared/lib/getDP';
 import { View } from '@/components/Themed';
 import { StyleSheet } from 'react-native';
 
@@ -15,7 +16,7 @@ export default Separator;
 
 const styles = StyleSheet.create({
   separator: {
-    marginVertical: 10,
+    marginVertical: dp(10),
     height: 1,
     width: '80%',
   },

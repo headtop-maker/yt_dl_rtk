@@ -31,7 +31,9 @@ const PrepareFile = () => {
 
   useEffect(() => {
     handleSSEConnect();
-    return () => cleanSSEConnect();
+    return () => {
+      cleanSSEConnect();
+    };
   }, []);
 
   console.log('downloadLink', downloadLink);
