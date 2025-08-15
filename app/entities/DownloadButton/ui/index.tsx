@@ -3,7 +3,7 @@ import { dp } from '@/app/shared/lib/getDP';
 import { Ionicons } from '@expo/vector-icons';
 import React, { FC, useState } from 'react';
 import * as FileSystem from 'expo-file-system';
-import { TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { TouchableOpacity, Text, StyleSheet, View } from 'react-native';
 import { CustomFonts } from '@/constants/CustomFonts';
 
 type TDownloadButton = {
@@ -42,14 +42,18 @@ const DownloadButton: FC<TDownloadButton> = ({
       style={styles.button}
       disabled={isDisabled}
     >
-      <Ionicons
-        name="cloud-download-outline"
-        size={dp(23)}
-        color="#FFFFFF"
-        style={{ marginRight: dp(8) }}
-      />
+      <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+        <Ionicons
+          name="cloud-download-outline"
+          size={dp(23)}
+          color="#FFFFFF"
+          style={{ marginRight: dp(8) }}
+        />
+        <Text style={styles.text}>Download file</Text>
+      </View>
+
       <Text style={styles.text}>
-        Download file {progressPercent > 0 && progressPercent + `%`}
+        {progressPercent > 0 && progressPercent + `%`}
       </Text>
     </TouchableOpacity>
   );
@@ -57,13 +61,14 @@ const DownloadButton: FC<TDownloadButton> = ({
 
 const styles = StyleSheet.create({
   button: {
+    flex: 1,
     flexDirection: 'row',
     backgroundColor: '#eb0f0f',
     paddingVertical: dp(12),
     paddingHorizontal: dp(20),
     borderRadius: dp(12),
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-around',
   },
   buttonDisabled: {
     opacity: 0.7,

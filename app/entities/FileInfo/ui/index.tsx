@@ -5,6 +5,7 @@ import { View, Text, StyleSheet } from 'react-native';
 interface FileInfoProps {
   name: string;
   size: number; // в байтах
+  fileStatus: string;
 }
 
 const formatBytes = (bytes: number): string => {
@@ -15,7 +16,7 @@ const formatBytes = (bytes: number): string => {
   return `${parseFloat((bytes / Math.pow(k, i)).toFixed(2))} ${sizes[i]}`;
 };
 
-const FileInfo: React.FC<FileInfoProps> = ({ name, size }) => {
+const FileInfo: React.FC<FileInfoProps> = ({ name, size, fileStatus }) => {
   const extension = name.split('.').pop()?.toUpperCase() || '';
   return (
     <View style={styles.container}>
@@ -26,8 +27,8 @@ const FileInfo: React.FC<FileInfoProps> = ({ name, size }) => {
         <Text style={styles.name} numberOfLines={1}>
           {name}
         </Text>
-        <Text style={styles.size}>{formatBytes(size)}</Text>
       </View>
+      <Text style={styles.size}>{fileStatus}</Text>
     </View>
   );
 };
@@ -45,7 +46,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.05,
     shadowRadius: 6,
     elevation: 2,
-    marginHorizontal: 16,
+    marginHorizontal: dp(5),
     marginVertical: 6,
   },
   iconBox: {

@@ -21,6 +21,7 @@ const PrepareFile = () => {
   const { data, handleSSEConnect, cleanSSEConnect } = useSSEvents<{
     fileName: string;
     fileSize: number;
+    fileStatus: string;
   }>();
 
   const predicateData =
@@ -30,7 +31,6 @@ const PrepareFile = () => {
     data.fileName !== '';
 
   useEffect(() => {
-    handleSSEConnect();
     return () => {
       cleanSSEConnect();
     };
@@ -41,7 +41,11 @@ const PrepareFile = () => {
     <>
       {predicateData && (
         <>
-          <FileInfo name={data.fileName} size={data.fileSize} />
+          <FileInfo
+            name={data.fileName}
+            size={data.fileSize}
+            fileStatus={data.fileStatus}
+          />
           <Separator />
         </>
       )}
@@ -49,6 +53,7 @@ const PrepareFile = () => {
       {!downloadLink && (
         <PrepareButton
           onPress={() => {
+            handleSSEConnect();
             dispatch(getDownloadLink());
           }}
           loading={false}
