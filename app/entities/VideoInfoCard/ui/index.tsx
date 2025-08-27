@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     padding: dp(12),
   },
   title: {
-    fontSize: 18,
+    fontSize: dp(18),
     fontFamily: CustomFonts.openSansRegular,
     marginBottom: 6,
     color: '#000000',
@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
     fontFamily: CustomFonts.openSansRegular,
   },
   emptyContainer: {
-    marginTop: 40,
+    marginTop: dp(40),
     padding: dp(20),
     backgroundColor: '#f3f3f3',
     borderRadius: 12,
