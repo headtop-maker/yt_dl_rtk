@@ -18,6 +18,7 @@ const styles = StyleSheet.create({
   separator: {
     marginVertical: dp(10),
     height: 1,
-    width: '80%',
+    width: '83%',
+    alignSelf: 'center',
   },
 });
