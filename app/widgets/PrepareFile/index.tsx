@@ -10,7 +10,6 @@ import Separator from '@/app/entities/Separator';
 import { useSSEvents } from '@/app/shared/hooks/useSSEvents';
 import { dp } from '@/app/shared/lib/getDP';
 import { useAppDispatch, useAppSelector } from '@/app/shared/models/storeHooks';
-import { useEffect } from 'react';
 import { Linking, TouchableOpacity, Text, StyleSheet } from 'react-native';
 
 const PrepareFile = () => {
@@ -18,7 +17,7 @@ const PrepareFile = () => {
   const fileName = useAppSelector(selectFileName);
   const dispatch = useAppDispatch();
 
-  const { data, handleSSEConnect, cleanSSEConnect } = useSSEvents<{
+  const { data } = useSSEvents<{
     fileName: string;
     fileSize: number;
     fileStatus: string;
@@ -30,13 +29,6 @@ const PrepareFile = () => {
     'fileName' in data &&
     data.fileName !== '';
 
-  useEffect(() => {
-    return () => {
-      cleanSSEConnect();
-    };
-  }, []);
-
-  console.log('downloadLink', downloadLink);
   return (
     <>
       {predicateData && (
@@ -53,7 +45,6 @@ const PrepareFile = () => {
       {!downloadLink && (
         <PrepareButton
           onPress={() => {
-            handleSSEConnect();
             dispatch(getDownloadLink());
           }}
           loading={false}

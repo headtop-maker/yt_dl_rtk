@@ -1,24 +1,36 @@
-import { useState } from 'react';
-import EventSource from 'react-native-sse';
+import { useEffect, useRef, useState } from 'react';
+import EventSource, { EventSourceListener } from 'react-native-sse';
 import { DEV_API } from '../models/constants';
 
 export const useSSEvents = <T>() => {
   const [data, setData] = useState<T>();
   const [error, setError] = useState<string | null>(null);
+  const eventSourceRef = useRef<EventSource>(null);
 
-  const eventSource = new EventSource(`${DEV_API}/uploadVideo/event/?id=123`, {
-    withCredentials: true,
-    headers: {
-      // Add headers if any
-    },
-  });
+  useEffect(() => {
+    eventSourceRef.current = new EventSource(
+      `${DEV_API}/uploadVideo/event/?id=1234`,
+      {
+        withCredentials: true,
+        headers: {
+          // Add headers if any
+        },
+      }
+    );
+    const listener: EventSourceListener = (event) => {
+      if (event.type === 'open') {
+        console.log('Open SSE connection.');
+      } else if (event.type === 'error') {
+        setError(event.message);
+        console.error('Connection error:', event.message);
+      } else if (event.type === 'exception') {
+        setError(event.message);
+        console.error('Error:', event.message, event.error);
+      }
+    };
 
-  const handleSSEConnect = () => {
-    eventSource.addEventListener('open', (event: unknown) => {
-      console.log('Open SSE connection.', event);
-    });
-
-    eventSource.addEventListener(
+    eventSourceRef.current.addEventListener('open', listener);
+    eventSourceRef.current.addEventListener(
       'message',
       (event: { data: null | string }) => {
         if (!!event && 'data' in event && event.data !== null) {
@@ -29,21 +41,16 @@ export const useSSEvents = <T>() => {
       }
     );
 
-    eventSource.addEventListener('error', (event: any) => {
-      if (event.type === 'error') {
-        setError(event.message);
-        console.error('Connection error:', event.message);
-      } else if (event.type === 'exception') {
-        setError(event.message);
-        console.error('Error:', event.message, event.error);
+    eventSourceRef.current.addEventListener('error', listener);
+
+    return () => {
+      if (eventSourceRef.current) {
+        console.log('clear sse');
+        eventSourceRef.current.removeAllEventListeners();
+        eventSourceRef.current.close();
       }
-    });
-  };
+    };
+  }, []);
 
-  const cleanSSEConnect = () => {
-    eventSource.removeAllEventListeners();
-    eventSource.close();
-  };
-
-  return { data, error, handleSSEConnect, cleanSSEConnect };
+  return { data, error };
 };
