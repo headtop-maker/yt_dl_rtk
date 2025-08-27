@@ -51,10 +51,9 @@ const DownloadButton: FC<TDownloadButton> = ({
         />
         <Text style={styles.text}>Download file</Text>
       </View>
-
-      <Text style={styles.text}>
-        {progressPercent > 0 && progressPercent + `%`}
-      </Text>
+      {progressPercent > 0 && (
+        <Text style={styles.text}>{progressPercent + `%`}</Text>
+      )}
     </TouchableOpacity>
   );
 };

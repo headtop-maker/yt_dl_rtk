@@ -1,5 +1,6 @@
 import { dp } from '@/app/shared/lib/getDP';
-import React from 'react';
+import { CustomFonts } from '@/constants/CustomFonts';
+import { FC } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
 interface FileInfoProps {
@@ -8,19 +9,18 @@ interface FileInfoProps {
   fileStatus: string;
 }
 
-const FileInfo: React.FC<FileInfoProps> = ({ name, size, fileStatus }) => {
+const FileInfo: FC<FileInfoProps> = ({ name, fileStatus }) => {
   const extension = name.split('.').pop()?.toUpperCase() || '';
   return (
     <View style={styles.container}>
       <View style={styles.iconBox}>
         <Text style={styles.extension}>{extension}</Text>
       </View>
+
       <View style={styles.details}>
-        <Text style={styles.name} numberOfLines={1}>
-          {name}
-        </Text>
+        {name && <Text style={styles.name}>{name}</Text>}
+        {fileStatus !== '\n' && <Text style={styles.size}>{fileStatus}</Text>}
       </View>
-      <Text style={styles.size}>{fileStatus}</Text>
     </View>
   );
 };
@@ -66,8 +66,10 @@ const styles = StyleSheet.create({
     marginBottom: 2,
   },
   size: {
-    fontSize: 14,
+    fontSize: dp(14),
     color: '#8E8E93',
+    fontFamily: CustomFonts.openSansRegular,
+    width: '85%',
   },
 });
 
