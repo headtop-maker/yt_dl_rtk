@@ -26,21 +26,16 @@ export const useSSEvents = <T>() => {
       } else if (event.type === 'exception') {
         setError(event.message);
         console.error('Error:', event.message, event.error);
+      } else if (event.type === 'message') {
+        if (!!event && 'data' in event && event.data !== null) {
+          setData(JSON.parse(event.data));
+        }
+        console.log('New message event:', event.data);
       }
     };
 
     eventSourceRef.current.addEventListener('open', listener);
-    eventSourceRef.current.addEventListener(
-      'message',
-      (event: { data: null | string }) => {
-        if (!!event && 'data' in event && event.data !== null) {
-          setData(JSON.parse(event.data));
-        }
-
-        console.log('New message event:', event.data);
-      }
-    );
-
+    eventSourceRef.current.addEventListener('message', listener);
     eventSourceRef.current.addEventListener('error', listener);
 
     return () => {
