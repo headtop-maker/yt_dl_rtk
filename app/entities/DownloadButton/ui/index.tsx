@@ -41,7 +41,7 @@ const DownloadButton: FC<TDownloadButton> = ({
   const handleInterval = () => {
     intId = setInterval(() => {
       dispatch(extendDeleteFile({ filename: name }));
-    }, DELETE_DELAY_MS * 1);
+    }, DELETE_DELAY_MS * 3);
   };
 
   const handleDownload = async () => {
