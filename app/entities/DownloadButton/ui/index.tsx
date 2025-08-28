@@ -5,6 +5,8 @@ import React, { FC, useState } from 'react';
 import * as FileSystem from 'expo-file-system';
 import { TouchableOpacity, Text, StyleSheet, View } from 'react-native';
 import { CustomFonts } from '@/constants/CustomFonts';
+import { useAppDispatch } from '@/app/shared/models/storeHooks';
+import { extendDeleteFile } from '@/app/(tabs)/models/actions';
 
 type TDownloadButton = {
   downloadLink: string;
@@ -13,6 +15,8 @@ type TDownloadButton = {
   callBack?: () => void;
 };
 
+const DELETE_DELAY_MS = 60 * 1000;
+
 const DownloadButton: FC<TDownloadButton> = ({
   downloadLink,
   name,
@@ -20,12 +24,27 @@ const DownloadButton: FC<TDownloadButton> = ({
   callBack,
 }) => {
   const [progressPercent, setProgressPercent] = useState(0);
+  const dispatch = useAppDispatch();
+  let intId: ReturnType<typeof setInterval>;
 
   const cbProgress = (downloadProgress: FileSystem.DownloadProgressData) => {
     const progress =
       downloadProgress.totalBytesWritten /
       downloadProgress.totalBytesExpectedToWrite;
-    setProgressPercent(+(progress * 100).toFixed(1));
+    const percent = +(progress * 100).toFixed(1);
+    if (percent > 98) {
+      clearInterval(intId);
+    }
+    setProgressPercent(percent);
+  };
+
+  const handleInterval = () => {
+    if (intId) {
+      clearInterval(intId);
+    }
+    intId = setInterval(() => {
+      dispatch(extendDeleteFile({ filename: name }));
+    }, DELETE_DELAY_MS * 5);
   };
 
   const handleDownload = async () => {
@@ -38,7 +57,10 @@ const DownloadButton: FC<TDownloadButton> = ({
 
   return (
     <TouchableOpacity
-      onPress={handleDownload}
+      onPress={() => {
+        handleDownload();
+        handleInterval();
+      }}
       style={styles.button}
       disabled={isDisabled}
     >

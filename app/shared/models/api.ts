@@ -24,6 +24,17 @@ export const mediaInfoApi = (
     url: `${DEV_API}/uploadVideo/info`,
   });
 
+export const extendDeleteFileApi = (
+  fileName: string
+): Promise<AxiosResponse<unknown, unknown>> =>
+  axiosInstance({
+    data: {
+      fileName: fileName,
+    },
+    method: 'POST',
+    url: `${DEV_API}/uploadVideo/extendDelete`,
+  });
+
 export const checkFileApi = (
   fileName: string
 ): Promise<AxiosResponse<boolean, unknown>> =>
