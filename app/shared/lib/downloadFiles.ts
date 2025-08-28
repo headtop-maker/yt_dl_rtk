@@ -1,8 +1,6 @@
 import * as FileSystem from 'expo-file-system';
 import { shareAsync } from 'expo-sharing';
 
-import { Platform } from 'react-native';
-
 export const downloadFiles = async (
   url: string,
   name: string,
