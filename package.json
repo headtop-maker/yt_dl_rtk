@@ -40,7 +40,8 @@
     "react-native-sse": "^1.2.1",
     "react-native-web": "~0.20.0",
     "react-redux": "^9.2.0",
-    "redux-persist": "^6.0.0"
+    "redux-persist": "^6.0.0",
+    "expo-dev-client": "~5.2.4"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
