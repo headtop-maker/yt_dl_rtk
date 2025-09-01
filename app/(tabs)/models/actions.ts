@@ -50,7 +50,7 @@ export const getDownloadLink = createAsyncThunk(
 
 export const extendDeleteFile = createAsyncThunk(
   `${dlFetchApiDomain}/extendDeleteFile`,
-  async (params: { filename: string }, { dispatch, rejectWithValue }) => {
+  async (params: { filename: string }, { rejectWithValue }) => {
     const { filename } = params;
 
     try {

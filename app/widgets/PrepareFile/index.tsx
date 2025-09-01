@@ -42,7 +42,7 @@ const PrepareFile = () => {
         </>
       )}
 
-      {!downloadLink && (
+      {!downloadLink && !predicateData && (
         <PrepareButton
           onPress={() => {
             dispatch(getDownloadLink());
