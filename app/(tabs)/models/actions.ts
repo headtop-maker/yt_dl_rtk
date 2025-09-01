@@ -12,6 +12,7 @@ import {
   resetMediaInfo,
   setCurrentLink,
 } from '@/app/shared/models/dlSlice';
+import { Alert } from 'react-native';
 
 export const getMediaInfo = createAsyncThunk(
   `${dlFetchApiDomain}/getInfo`,
@@ -25,6 +26,7 @@ export const getMediaInfo = createAsyncThunk(
       dispatch(setCurrentLink(link));
       return data;
     } catch (err) {
+      Alert.alert('Error', String(err));
       return rejectWithValue(err);
     }
   }
@@ -43,6 +45,7 @@ export const getDownloadLink = createAsyncThunk(
         downloadLink: `${DEV_API}/downloads/${data.fileName}`,
       };
     } catch (err) {
+      Alert.alert('Error', String(err));
       return rejectWithValue(err);
     }
   }
@@ -58,6 +61,7 @@ export const extendDeleteFile = createAsyncThunk(
       console.log('extendDeleteFileApi', data);
       return;
     } catch (err) {
+      Alert.alert('Error', String(err));
       return rejectWithValue(err);
     }
   }

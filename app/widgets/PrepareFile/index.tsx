@@ -9,6 +9,7 @@ import PrepareButton from '@/app/entities/PrepareButton/ui';
 import Separator from '@/app/entities/Separator';
 import { useSSEvents } from '@/app/shared/hooks/useSSEvents';
 import { dp } from '@/app/shared/lib/getDP';
+import { DEV_API } from '@/app/shared/models/constants';
 import { useAppDispatch, useAppSelector } from '@/app/shared/models/storeHooks';
 import { Linking, TouchableOpacity, Text, StyleSheet } from 'react-native';
 
@@ -21,6 +22,7 @@ const PrepareFile = () => {
     fileName: string;
     fileSize: number;
     fileStatus: string;
+    isDone: boolean;
   }>();
 
   const predicateData =
@@ -50,16 +52,18 @@ const PrepareFile = () => {
           loading={false}
         />
       )}
-      {!!downloadLink && (
+      {data && data.isDone && (
         <>
           <TouchableOpacity
-            onPress={() => Linking.openURL(downloadLink)}
+            onPress={() =>
+              Linking.openURL(`${DEV_API}/downloads/${data?.fileName}`)
+            }
             style={styles.openLink}
           >
-            <Text>{downloadLink}</Text>
+            <Text>{`${DEV_API}/downloads/${data?.fileName}`}</Text>
           </TouchableOpacity>
           <DownloadButton
-            downloadLink={downloadLink}
+            downloadLink={`${DEV_API}/downloads/${data?.fileName}`}
             name={fileName || 'yt_dl_file.mp4'}
             isDisabled={false}
           />
