@@ -8,26 +8,26 @@
 
 /* Begin PBXBuildFile section */
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
+		2A20CD352A98F65B4F28DD86 /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BAF78A1CFCA71C7A753EDA8 /* ExpoModulesProvider.swift */; };
 		3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */; };
-		6723580CBBEEA2559684F1AA /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE77CF4A6C9AA0A573D35FA /* ExpoModulesProvider.swift */; };
-		8A006CF21B85B8E26BC5FC69 /* libPods-ytdlrtk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 23CCF12073636C62A33CCA1E /* libPods-ytdlrtk.a */; };
+		521CA8D7ACEF70E2B7D44026 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 348956B2194C2EDCDA76A927 /* PrivacyInfo.xcprivacy */; };
+		6BE2A4B0D79E6FB9F863B790 /* libPods-ytdlrtk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BDC2B3189B9EB2A91D4C043 /* libPods-ytdlrtk.a */; };
 		BB2F792D24A3F905000567C9 /* Expo.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB2F792C24A3F905000567C9 /* Expo.plist */; };
-		DB72E396E47F71194DC3C00A /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = DF5EE50E1EEC3CEA0C548F0E /* PrivacyInfo.xcprivacy */; };
 		F11748422D0307B40044C1D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11748412D0307B40044C1D9 /* AppDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0771DEA877073378AD2DA2C1 /* Pods-ytdlrtk.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ytdlrtk.release.xcconfig"; path = "Target Support Files/Pods-ytdlrtk/Pods-ytdlrtk.release.xcconfig"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* ytdlrtk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ytdlrtk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ytdlrtk/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ytdlrtk/Info.plist; sourceTree = "<group>"; };
-		23CCF12073636C62A33CCA1E /* libPods-ytdlrtk.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ytdlrtk.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		5D3627216341C8B1B0AF8DC5 /* Pods-ytdlrtk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ytdlrtk.debug.xcconfig"; path = "Target Support Files/Pods-ytdlrtk/Pods-ytdlrtk.debug.xcconfig"; sourceTree = "<group>"; };
+		1BAF78A1CFCA71C7A753EDA8 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-ytdlrtk/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
+		348956B2194C2EDCDA76A927 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = ytdlrtk/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		5BDC2B3189B9EB2A91D4C043 /* libPods-ytdlrtk.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ytdlrtk.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SplashScreen.storyboard; path = ytdlrtk/SplashScreen.storyboard; sourceTree = "<group>"; };
+		B0B224FB83020D1432256B04 /* Pods-ytdlrtk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ytdlrtk.debug.xcconfig"; path = "Target Support Files/Pods-ytdlrtk/Pods-ytdlrtk.debug.xcconfig"; sourceTree = "<group>"; };
 		BB2F792C24A3F905000567C9 /* Expo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Expo.plist; sourceTree = "<group>"; };
-		CAE77CF4A6C9AA0A573D35FA /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-ytdlrtk/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
-		DF5EE50E1EEC3CEA0C548F0E /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = ytdlrtk/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		EEB3E3F4A0D18FC504A6263A /* Pods-ytdlrtk.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ytdlrtk.release.xcconfig"; path = "Target Support Files/Pods-ytdlrtk/Pods-ytdlrtk.release.xcconfig"; sourceTree = "<group>"; };
 		F11748412D0307B40044C1D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = ytdlrtk/AppDelegate.swift; sourceTree = "<group>"; };
 		F11748442D0722820044C1D9 /* ytdlrtk-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "ytdlrtk-Bridging-Header.h"; path = "ytdlrtk/ytdlrtk-Bridging-Header.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -37,7 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8A006CF21B85B8E26BC5FC69 /* libPods-ytdlrtk.a in Frameworks */,
+				6BE2A4B0D79E6FB9F863B790 /* libPods-ytdlrtk.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -53,34 +53,36 @@
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */,
-				DF5EE50E1EEC3CEA0C548F0E /* PrivacyInfo.xcprivacy */,
+				348956B2194C2EDCDA76A927 /* PrivacyInfo.xcprivacy */,
 			);
 			name = ytdlrtk;
-			sourceTree = "<group>";
-		};
-		225A91484EE188B99C7A4E61 /* ExpoModulesProviders */ = {
-			isa = PBXGroup;
-			children = (
-				7110DC6211E69BEB25F4EFF2 /* ytdlrtk */,
-			);
-			name = ExpoModulesProviders;
 			sourceTree = "<group>";
 		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				23CCF12073636C62A33CCA1E /* libPods-ytdlrtk.a */,
+				5BDC2B3189B9EB2A91D4C043 /* libPods-ytdlrtk.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		7110DC6211E69BEB25F4EFF2 /* ytdlrtk */ = {
+		3F8D93FB83C5B98197CB4452 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				CAE77CF4A6C9AA0A573D35FA /* ExpoModulesProvider.swift */,
+				B0B224FB83020D1432256B04 /* Pods-ytdlrtk.debug.xcconfig */,
+				0771DEA877073378AD2DA2C1 /* Pods-ytdlrtk.release.xcconfig */,
 			);
-			name = ytdlrtk;
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		6A0EF6826289B364135829B2 /* ExpoModulesProviders */ = {
+			isa = PBXGroup;
+			children = (
+				95E46AF5F6109EA1C5D4381C /* ytdlrtk */,
+			);
+			name = ExpoModulesProviders;
 			sourceTree = "<group>";
 		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
@@ -97,8 +99,8 @@
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
-				8E33151648FFEEE53BE09C27 /* Pods */,
-				225A91484EE188B99C7A4E61 /* ExpoModulesProviders */,
+				3F8D93FB83C5B98197CB4452 /* Pods */,
+				6A0EF6826289B364135829B2 /* ExpoModulesProviders */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -113,14 +115,12 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		8E33151648FFEEE53BE09C27 /* Pods */ = {
+		95E46AF5F6109EA1C5D4381C /* ytdlrtk */ = {
 			isa = PBXGroup;
 			children = (
-				5D3627216341C8B1B0AF8DC5 /* Pods-ytdlrtk.debug.xcconfig */,
-				EEB3E3F4A0D18FC504A6263A /* Pods-ytdlrtk.release.xcconfig */,
+				1BAF78A1CFCA71C7A753EDA8 /* ExpoModulesProvider.swift */,
 			);
-			name = Pods;
-			path = Pods;
+			name = ytdlrtk;
 			sourceTree = "<group>";
 		};
 		BB2F792B24A3F905000567C9 /* Supporting */ = {
@@ -140,13 +140,13 @@
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "ytdlrtk" */;
 			buildPhases = (
 				08A4A3CD28434E44B6B9DE2E /* [CP] Check Pods Manifest.lock */,
-				463CFC7D0A952B2559CFD222 /* [Expo] Configure project */,
+				4AD6C693CA2ECCD027550F20 /* [Expo] Configure project */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				800E24972A6A228C8D4807E9 /* [CP] Copy Pods Resources */,
-				DD17C134885A9DC7305CA8D9 /* [CP] Embed Pods Frameworks */,
+				D035DE3276B4C1F05AB9FA84 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -196,7 +196,7 @@
 				BB2F792D24A3F905000567C9 /* Expo.plist in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */,
-				DB72E396E47F71194DC3C00A /* PrivacyInfo.xcprivacy in Resources */,
+				521CA8D7ACEF70E2B7D44026 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,7 +240,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		463CFC7D0A952B2559CFD222 /* [Expo] Configure project */ = {
+		4AD6C693CA2ECCD027550F20 /* [Expo] Configure project */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
@@ -299,7 +299,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ytdlrtk/Pods-ytdlrtk-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		DD17C134885A9DC7305CA8D9 /* [CP] Embed Pods Frameworks */ = {
+		D035DE3276B4C1F05AB9FA84 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -325,7 +325,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F11748422D0307B40044C1D9 /* AppDelegate.swift in Sources */,
-				6723580CBBEEA2559684F1AA /* ExpoModulesProvider.swift in Sources */,
+				2A20CD352A98F65B4F28DD86 /* ExpoModulesProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -334,7 +334,7 @@
 /* Begin XCBuildConfiguration section */
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5D3627216341C8B1B0AF8DC5 /* Pods-ytdlrtk.debug.xcconfig */;
+			baseConfigurationReference = B0B224FB83020D1432256B04 /* Pods-ytdlrtk.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -359,7 +359,7 @@
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.headtop.yt-dl-rtk";
-				PRODUCT_NAME = ytdlrtk;
+				PRODUCT_NAME = "ytdlrtk";
 				SWIFT_OBJC_BRIDGING_HEADER = "ytdlrtk/ytdlrtk-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -370,7 +370,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EEB3E3F4A0D18FC504A6263A /* Pods-ytdlrtk.release.xcconfig */;
+			baseConfigurationReference = 0771DEA877073378AD2DA2C1 /* Pods-ytdlrtk.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -390,7 +390,7 @@
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_RELEASE";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.headtop.yt-dl-rtk";
-				PRODUCT_NAME = ytdlrtk;
+				PRODUCT_NAME = "ytdlrtk";
 				SWIFT_OBJC_BRIDGING_HEADER = "ytdlrtk/ytdlrtk-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
