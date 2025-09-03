@@ -27,18 +27,22 @@ const DownloadButton: FC<TDownloadButton> = ({
     pauseDownload,
     progressPercent,
     isDownloading,
+    isFinish,
   } = useDownloadFiles();
 
   const dispatch = useAppDispatch();
   let intId = useRef<ReturnType<typeof setInterval>>(undefined);
 
   useEffect(() => {
-    if (progressPercent > 98) {
+    console.log('clearId', intId.current, isFinish);
+    if (isFinish) {
+      console.log('clearId', intId.current);
       clearInterval(intId.current);
     }
-  }, [progressPercent]);
+  }, [isFinish]);
 
   const handleInterval = () => {
+    console.log(intId.current);
     if (intId.current) {
       clearInterval(intId.current);
     }
@@ -57,10 +61,10 @@ const DownloadButton: FC<TDownloadButton> = ({
       await downloadFiles(downloadLink, name);
       handleInterval();
     }
-    if (isDownloading && progressPercent > 0) {
+    if (isDownloading && progressPercent > 0 && progressPercent !== 100) {
       pauseDownload();
     }
-    if (!isDownloading && progressPercent > 0) {
+    if (!isDownloading && progressPercent > 0 && progressPercent !== 100) {
       resumeDownload();
     }
   };

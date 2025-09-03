@@ -4,6 +4,7 @@ import { shareAsync } from 'expo-sharing';
 
 export const useDownloadFiles = () => {
   const [isDownloading, setIsDownloading] = useState(false);
+  const [isFinish, setIsFinish] = useState(false);
 
   const [progressPercent, setProgressPercent] = useState(0);
   let downloadResumable = useRef<FileSystem.DownloadResumable | null>(null);
@@ -13,6 +14,7 @@ export const useDownloadFiles = () => {
       downloadProgress.totalBytesWritten /
       downloadProgress.totalBytesExpectedToWrite;
     const percent = +(progress * 100).toFixed(1);
+
     setProgressPercent(percent);
     if (percent === 100) {
       setIsDownloading(false);
@@ -21,6 +23,7 @@ export const useDownloadFiles = () => {
   };
 
   const downloadFiles = async (url: string, name: string) => {
+    setIsFinish(false);
     if (!!downloadResumable.current) {
       await downloadResumable.current.cancelAsync();
     }
@@ -33,13 +36,13 @@ export const useDownloadFiles = () => {
     );
 
     try {
-      console.log('start dl');
       const result = await downloadResumable.current.downloadAsync();
       setIsDownloading(true);
       if (result) {
         saveFile(result.uri);
+        setIsFinish(true);
+        setProgressPercent(0);
       }
-      console.log('stop dl');
       setIsDownloading(false);
     } catch (e) {
       console.log('Download error:', e);
@@ -87,6 +90,7 @@ export const useDownloadFiles = () => {
     pauseDownload,
     resumeDownload,
     progressPercent,
+    isFinish,
     isDownloading,
   };
 };
