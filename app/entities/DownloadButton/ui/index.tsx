@@ -1,6 +1,6 @@
 import { dp } from '@/app/shared/lib/getDP';
 import { Ionicons } from '@expo/vector-icons';
-import React, { FC, useEffect } from 'react';
+import React, { FC, useEffect, useRef } from 'react';
 import { TouchableOpacity, Text, StyleSheet, View } from 'react-native';
 import { CustomFonts } from '@/constants/CustomFonts';
 import { useAppDispatch } from '@/app/shared/models/storeHooks';
@@ -30,23 +30,32 @@ const DownloadButton: FC<TDownloadButton> = ({
   } = useDownloadFiles();
 
   const dispatch = useAppDispatch();
-  let intId: ReturnType<typeof setInterval>;
+  let intId = useRef<ReturnType<typeof setInterval>>(undefined);
 
   useEffect(() => {
-    if (progressPercent > 98 && isDownloading) {
-      clearInterval(intId);
+    if (progressPercent > 98) {
+      clearInterval(intId.current);
     }
   }, [progressPercent]);
 
   const handleInterval = () => {
-    intId = setInterval(() => {
+    if (intId.current) {
+      clearInterval(intId.current);
+    }
+    intId.current = setInterval(() => {
       dispatch(extendDeleteFile({ filename: name }));
+      console.log(intId.current);
     }, DELETE_DELAY_MS * 3);
   };
 
   const handleDownload = async () => {
+    console.log(isDownloading, progressPercent);
     if (!isDownloading && progressPercent === 0) {
+      if (intId.current) {
+        clearInterval(intId.current);
+      }
       await downloadFiles(downloadLink, name);
+      handleInterval();
     }
     if (isDownloading && progressPercent > 0) {
       pauseDownload();
@@ -60,7 +69,6 @@ const DownloadButton: FC<TDownloadButton> = ({
     <TouchableOpacity
       onPress={() => {
         handleDownload();
-        handleInterval();
       }}
       style={[
         styles.button,

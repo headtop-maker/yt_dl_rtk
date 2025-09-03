@@ -14,6 +14,10 @@ export const useDownloadFiles = () => {
       downloadProgress.totalBytesExpectedToWrite;
     const percent = +(progress * 100).toFixed(1);
     setProgressPercent(percent);
+    if (percent === 100) {
+      setIsDownloading(false);
+      setProgressPercent(0);
+    }
   };
 
   const downloadFiles = async (url: string, name: string) => {
