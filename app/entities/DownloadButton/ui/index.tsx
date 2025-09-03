@@ -1,12 +1,13 @@
 import { downloadFiles } from '@/app/shared/lib/downloadFiles';
 import { dp } from '@/app/shared/lib/getDP';
 import { Ionicons } from '@expo/vector-icons';
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import * as FileSystem from 'expo-file-system';
 import { TouchableOpacity, Text, StyleSheet, View } from 'react-native';
 import { CustomFonts } from '@/constants/CustomFonts';
 import { useAppDispatch } from '@/app/shared/models/storeHooks';
 import { extendDeleteFile } from '@/app/(tabs)/models/actions';
+import { useDownloadFiles } from '@/app/shared/hooks/useDownloadFiles';
 
 type TDownloadButton = {
   downloadLink: string;
@@ -23,20 +24,15 @@ const DownloadButton: FC<TDownloadButton> = ({
   isDisabled,
   callBack,
 }) => {
-  const [progressPercent, setProgressPercent] = useState(0);
+  const { downloadFiles, progressPercent } = useDownloadFiles();
   const dispatch = useAppDispatch();
   let intId: ReturnType<typeof setInterval>;
 
-  const cbProgress = (downloadProgress: FileSystem.DownloadProgressData) => {
-    const progress =
-      downloadProgress.totalBytesWritten /
-      downloadProgress.totalBytesExpectedToWrite;
-    const percent = +(progress * 100).toFixed(1);
-    if (percent > 98) {
+  useEffect(() => {
+    if (progressPercent > 98) {
       clearInterval(intId);
     }
-    setProgressPercent(percent);
-  };
+  }, [progressPercent]);
 
   const handleInterval = () => {
     intId = setInterval(() => {
@@ -48,8 +44,7 @@ const DownloadButton: FC<TDownloadButton> = ({
     if (callBack) {
       callBack();
     }
-    setProgressPercent(0);
-    await downloadFiles(downloadLink, name, cbProgress);
+    await downloadFiles(downloadLink, name);
   };
 
   return (

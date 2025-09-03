@@ -19,7 +19,7 @@ const FileInfo: FC<FileInfoProps> = ({ name, fileStatus }) => {
 
       <View style={styles.details}>
         {name && <Text style={styles.name}>{name}</Text>}
-        {fileStatus !== '\n' && (
+        {fileStatus !== '\n' && fileStatus !== '' && (
           <Text style={styles.size} numberOfLines={2} ellipsizeMode="tail">
             {fileStatus}
           </Text>
