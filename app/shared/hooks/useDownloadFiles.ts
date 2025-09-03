@@ -3,8 +3,10 @@ import * as FileSystem from 'expo-file-system';
 import { shareAsync } from 'expo-sharing';
 
 export const useDownloadFiles = () => {
-  let downloadResumable = useRef<FileSystem.DownloadResumable | null>(null);
+  const [isDownloading, setIsDownloading] = useState(false);
+
   const [progressPercent, setProgressPercent] = useState(0);
+  let downloadResumable = useRef<FileSystem.DownloadResumable | null>(null);
 
   const cbProgress = (downloadProgress: FileSystem.DownloadProgressData) => {
     const progress =
@@ -25,10 +27,19 @@ export const useDownloadFiles = () => {
       {},
       cbProgress
     );
-    const result = await downloadResumable.current.downloadAsync();
 
-    if (result) {
-      saveFile(result.uri);
+    try {
+      console.log('start dl');
+      const result = await downloadResumable.current.downloadAsync();
+      setIsDownloading(true);
+      if (result) {
+        saveFile(result.uri);
+      }
+      console.log('stop dl');
+      setIsDownloading(false);
+    } catch (e) {
+      console.log('Download error:', e);
+      setIsDownloading(false);
     }
   };
 
@@ -38,10 +49,40 @@ export const useDownloadFiles = () => {
     }
   };
 
+  const pauseDownload = async () => {
+    console.log('pauseDownload');
+    if (downloadResumable.current) {
+      try {
+        await downloadResumable.current.pauseAsync();
+        setIsDownloading(false);
+      } catch (e) {
+        console.log('Pause error:', e);
+      }
+    }
+  };
+
+  const resumeDownload = async () => {
+    console.log('resumeDownload');
+    if (downloadResumable.current) {
+      try {
+        await downloadResumable.current.resumeAsync();
+        setIsDownloading(true);
+      } catch (e) {
+        console.log('Resume error:', e);
+      }
+    }
+  };
+
   const saveFile = async (uri: string) => {
     shareAsync(uri);
     readFiles();
   };
 
-  return { downloadFiles, progressPercent };
+  return {
+    downloadFiles,
+    pauseDownload,
+    resumeDownload,
+    progressPercent,
+    isDownloading,
+  };
 };
