@@ -3,10 +3,8 @@ import * as FileSystem from 'expo-file-system';
 import { shareAsync } from 'expo-sharing';
 
 export const useDownloadFiles = () => {
-  const [isDownloading, setIsDownloading] = useState(false);
-  const [isFinish, setIsFinish] = useState(false);
-
   const [progressPercent, setProgressPercent] = useState(0);
+  const [isFinish, setIsFinish] = useState(false);
   let downloadResumable = useRef<FileSystem.DownloadResumable | null>(null);
 
   const cbProgress = (downloadProgress: FileSystem.DownloadProgressData) => {
@@ -16,18 +14,15 @@ export const useDownloadFiles = () => {
     const percent = +(progress * 100).toFixed(1);
 
     setProgressPercent(percent);
-    if (percent === 100) {
-      setIsDownloading(false);
-      setProgressPercent(0);
-    }
   };
 
   const downloadFiles = async (url: string, name: string) => {
-    setIsFinish(false);
     if (!!downloadResumable.current) {
       await downloadResumable.current.cancelAsync();
     }
+
     setProgressPercent(0);
+    setIsFinish(false);
     downloadResumable.current = FileSystem.createDownloadResumable(
       url,
       FileSystem.documentDirectory + name,
@@ -37,46 +32,19 @@ export const useDownloadFiles = () => {
 
     try {
       const result = await downloadResumable.current.downloadAsync();
-      setIsDownloading(true);
       if (result) {
         saveFile(result.uri);
-        setIsFinish(true);
         setProgressPercent(0);
+        setIsFinish(true);
       }
-      setIsDownloading(false);
     } catch (e) {
       console.log('Download error:', e);
-      setIsDownloading(false);
     }
   };
 
   const readFiles = async () => {
     if (FileSystem.documentDirectory) {
       await FileSystem.readDirectoryAsync(FileSystem.documentDirectory);
-    }
-  };
-
-  const pauseDownload = async () => {
-    console.log('pauseDownload');
-    if (downloadResumable.current) {
-      try {
-        await downloadResumable.current.pauseAsync();
-        setIsDownloading(false);
-      } catch (e) {
-        console.log('Pause error:', e);
-      }
-    }
-  };
-
-  const resumeDownload = async () => {
-    console.log('resumeDownload');
-    if (downloadResumable.current) {
-      try {
-        await downloadResumable.current.resumeAsync();
-        setIsDownloading(true);
-      } catch (e) {
-        console.log('Resume error:', e);
-      }
     }
   };
 
@@ -87,10 +55,7 @@ export const useDownloadFiles = () => {
 
   return {
     downloadFiles,
-    pauseDownload,
-    resumeDownload,
-    progressPercent,
     isFinish,
-    isDownloading,
+    progressPercent,
   };
 };

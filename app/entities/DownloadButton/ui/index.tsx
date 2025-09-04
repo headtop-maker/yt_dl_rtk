@@ -21,14 +21,7 @@ const DownloadButton: FC<TDownloadButton> = ({
   name,
   isDisabled,
 }) => {
-  const {
-    downloadFiles,
-    resumeDownload,
-    pauseDownload,
-    progressPercent,
-    isDownloading,
-    isFinish,
-  } = useDownloadFiles();
+  const { downloadFiles, isFinish, progressPercent } = useDownloadFiles();
 
   const dispatch = useAppDispatch();
   let intId = useRef<ReturnType<typeof setInterval>>(undefined);
@@ -53,20 +46,11 @@ const DownloadButton: FC<TDownloadButton> = ({
   };
 
   const handleDownload = async () => {
-    console.log(isDownloading, progressPercent);
-    if (!isDownloading && progressPercent === 0) {
-      if (intId.current) {
-        clearInterval(intId.current);
-      }
-      await downloadFiles(downloadLink, name);
-      handleInterval();
+    if (intId.current) {
+      clearInterval(intId.current);
     }
-    if (isDownloading && progressPercent > 0 && progressPercent !== 100) {
-      pauseDownload();
-    }
-    if (!isDownloading && progressPercent > 0 && progressPercent !== 100) {
-      resumeDownload();
-    }
+    await downloadFiles(downloadLink, name);
+    handleInterval();
   };
 
   return (
