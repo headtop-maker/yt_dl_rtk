@@ -21,7 +21,7 @@ export default function TabOneScreen() {
   const dispatch = useAppDispatch();
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView edges={['top']} style={styles.container}>
       <LinkInput
         setStateLink={(link: string) => {
           dispatch(getMediaInfo({ link }));
