@@ -1,4 +1,10 @@
-import { ActivityIndicator, ScrollView, StyleSheet, Text } from 'react-native';
+import {
+  ActivityIndicator,
+  Dimensions,
+  ScrollView,
+  StyleSheet,
+  Text,
+} from 'react-native';
 import { View } from '@/components/Themed';
 import LinkInput from '../entities/LinkInput/ui';
 import { dp } from '@/app/shared/lib/getDP';
@@ -14,6 +20,46 @@ import { secToMin } from '../shared/lib/secToMin';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Separator from '../entities/Separator';
 import PrepareFile from '../widgets/PrepareFile';
+import { AdRequest, BannerAdSize, BannerView, Gender } from 'yandex-mobile-ads';
+
+const createBanner = async () => {
+  let adSize = await BannerAdSize.inlineSize(
+    Dimensions.get('window').width,
+    100
+  );
+
+  let adRequest = new AdRequest({
+    age: '20',
+    contextQuery: 'context-query',
+    contextTags: ['context-tag'],
+    gender: Gender.Male,
+  });
+
+  return (
+    <BannerView
+      size={adSize}
+      adUnitId={'demo-banner-yandex'} // or 'demo-banner-yandex'
+      adRequest={adRequest}
+      onAdLoaded={() => console.log('Did load')}
+      onAdFailedToLoad={(event: any) =>
+        console.log(
+          `Did fail to load with error: ${JSON.stringify(event.nativeEvent)}`
+        )
+      }
+      onAdClicked={() => console.log('Did click')}
+      onLeftApplication={() => console.log('Did leave application')}
+      onReturnToApplication={() => console.log('Did return to application')}
+      onAdImpression={(event: any) =>
+        console.log(
+          `Did track impression: ${JSON.stringify(
+            event.nativeEvent.impressionData
+          )}`
+        )
+      }
+      onAdClose={() => console.log('Did close')}
+    />
+  );
+};
 
 export default function TabOneScreen() {
   const loading = useAppSelector(selectIsLoading);
@@ -28,6 +74,7 @@ export default function TabOneScreen() {
         }}
         disableSearch={false}
       />
+
       {loading && (
         <View style={styles.loadingContainer}>
           <Separator />
@@ -53,6 +100,7 @@ export default function TabOneScreen() {
           <PrepareFile />
         </ScrollView>
       )}
+      <View>{createBanner()}</View>
     </SafeAreaView>
   );
 }
@@ -63,6 +111,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: dp(20),
     backgroundColor: '#FFFFFF',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
   },
   title: {
     fontSize: 20,
