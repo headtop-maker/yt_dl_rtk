@@ -11,9 +11,8 @@ import { dp } from '@/app/shared/lib/getDP';
 import { CustomFonts } from '@/constants/CustomFonts';
 
 import { useAppDispatch, useAppSelector } from '../shared/models/storeHooks';
-import { getMediaInfo } from './models/actions';
-import { selectIsLoading } from '../shared/models/selectors';
-import { selectMediaInfo } from './models/selectors';
+import { getMediaInfo } from '../shared/models/actions';
+import { selectIsLoading, selectMediaInfo } from '../shared/models/selectors';
 import VideoInfoCard from '../entities/VideoInfoCard/ui';
 import { secToMin } from '../shared/lib/secToMin';
 
@@ -86,7 +85,10 @@ export default function TabOneScreen() {
       )}
 
       {!!mediaInfo && (
-        <ScrollView style={{ width: '100%', height: '100%' }}>
+        <ScrollView
+          style={{ width: '100%', height: '100%' }}
+          showsVerticalScrollIndicator={false}
+        >
           <Separator />
           <VideoInfoCard
             data={{
@@ -120,9 +122,11 @@ const styles = StyleSheet.create({
   },
 
   loadingContainer: {
+    flex: 1,
     width: '100%',
     justifyContent: 'center',
     alignItems: 'center',
     padding: dp(20),
+    alignSelf: 'center',
   },
 });

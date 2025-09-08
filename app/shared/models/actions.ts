@@ -6,13 +6,14 @@ import {
 import { DEV_API, dlFetchApiDomain } from '@/app/shared/models/constants';
 import { RootState } from '@/app/shared/models/store';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { selectCurrentLink } from './selectors';
+
 import {
   resetDownloadInfo,
   resetMediaInfo,
   setCurrentLink,
 } from '@/app/shared/models/dlSlice';
 import { Alert } from 'react-native';
+import { selectCurrentLink } from './selectors';
 
 export const getMediaInfo = createAsyncThunk(
   `${dlFetchApiDomain}/getInfo`,

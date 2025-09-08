@@ -1,8 +1,5 @@
-import { getDownloadLink } from '@/app/(tabs)/models/actions';
-import {
-  selectDownloadLink,
-  selectFileName,
-} from '@/app/(tabs)/models/selectors';
+import { getDownloadLink } from '@/app/shared/models/actions';
+
 import DownloadButton from '@/app/entities/DownloadButton/ui';
 import FileInfo from '@/app/entities/FileInfo/ui';
 import PrepareButton from '@/app/entities/PrepareButton/ui';
@@ -12,6 +9,10 @@ import { dp } from '@/app/shared/lib/getDP';
 import { DEV_API } from '@/app/shared/models/constants';
 import { useAppDispatch, useAppSelector } from '@/app/shared/models/storeHooks';
 import { Linking, TouchableOpacity, Text, StyleSheet } from 'react-native';
+import {
+  selectDownloadLink,
+  selectFileName,
+} from '@/app/shared/models/selectors';
 
 const PrepareFile = () => {
   const downloadLink = useAppSelector(selectDownloadLink);

@@ -4,7 +4,7 @@ import React, { FC, useEffect, useRef } from 'react';
 import { TouchableOpacity, Text, StyleSheet, View } from 'react-native';
 import { CustomFonts } from '@/constants/CustomFonts';
 import { useAppDispatch } from '@/app/shared/models/storeHooks';
-import { extendDeleteFile } from '@/app/(tabs)/models/actions';
+import { extendDeleteFile } from '@/app/shared/models/actions';
 import { useDownloadFiles } from '@/app/shared/hooks/useDownloadFiles';
 
 type TDownloadButton = {

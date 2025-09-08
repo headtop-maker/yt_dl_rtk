@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { DlState } from './types';
-import { getDownloadLink, getMediaInfo } from '@/app/(tabs)/models/actions';
+import { getDownloadLink, getMediaInfo } from '@/app/shared/models/actions';
 
 const initialState: DlState = {
   mediaInfo: undefined,
